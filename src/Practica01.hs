@@ -8,27 +8,36 @@ data Shape = Circle Float | --representa el radio
             Rectangle Float Float| --representa base y altura
             Triangle Float | --representa un lado
             Trapeze Float Float Float --representa base mayor, base menor y altura
-            deriving (Show)
+            deriving (Show, Eq)
 
 --Funcion que calcula el area de las figuras
 area :: Shape -> Float
-area = undefined
+area (Circle r) = pi *(r^2)
+area (Square l) = (l^2)
+area (Rectangle b h) = b * h
+area (Triangle x) = (x^2)/2 
+area (Trapeze v b h) = ((v + b) * h)/2 
 
 --Funcion que calcula el perimetro de las figuras
 perimeter :: Shape -> Float
-perimeter = undefined
+perimeter (Circle r) = 2 * pi * r 
+perimeter (Square l) = l * 4 
+perimeter (Rectangle b h) = (b*2) + (h*2)  
+perimeter (Triangle x) = x * 3 
+perimeter (Trapeze v b h) = v + b + (h*2) 
 
 
 --Ejercicio 2 (Les toca arreglar el sinonimo)
-type Point = Shape
+
+type Point = (Float, Float)
 
 -- Funcion para calcular la distancia entre dos puntos
 distance :: Point -> Point -> Float
-distance = undefined 
+distance (x, y) (n, m) = sqrt((n-x)^2+(m-y)^2) 
 
 --Funcion para calcular la distancia de un punto al origen
 from0 :: Point -> Float
-from0 = undefined
+from0 (x, y) = sqrt((x)^2+(y)^2)
 
 --Ejercicio 3
 data Haskellium = Undefined
