@@ -40,7 +40,13 @@ from0 :: Point -> Float
 from0 (x, y) = sqrt((x)^2+(y)^2)
 
 --Ejercicio 3
-data Haskellium = Undefined
+data Haskellium = Haskellium 
+              { name    :: String,
+                lastName1   :: String,
+                lastName2   :: String,
+                location    :: Point,
+                houseShape  :: Shape }
+                deriving (Show, Eq)
 
 --Funcion para regresar el hijo de dos Haskelliums dado su nombre
 son :: Haskellium -> Haskellium -> String -> Haskellium
