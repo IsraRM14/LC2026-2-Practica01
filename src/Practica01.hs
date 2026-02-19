@@ -84,7 +84,8 @@ palindromo lista = lista == reverse lista
 
 --Ejercicio 2
 myFoldr :: (a -> b -> b) -> b -> [a] -> b
-myFoldr = undefined
+myFoldr f v []     = v
+myFoldr f v (x:xs) = f x (foldr f v xs)
 
 --Ejercicio 3
 conjuntoPotencia :: [a] -> [[a]]
