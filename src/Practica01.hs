@@ -80,8 +80,8 @@ in distance / speed
 
 --LISTAS Y FUNCIONES
 --Ejercicio 1
-palindromo :: String -> Bool
-palindromo = undefined
+palindromo :: Eq a => [a] -> Bool 
+palindromo lista = lista == reverse lista 
 
 --Ejercicio 2
 myFoldr :: (a -> b -> b) -> b -> [a] -> b
