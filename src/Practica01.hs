@@ -72,11 +72,10 @@ houseCost (Haskellium _ _ _ _ houseShape) = perimeter houseShape * 2.5 + area ho
 timeToWork :: Haskellium -> Float
 timeToWork (Haskellium _ _ _ location _ ) =
   let dist = from0 location
-       speed = if distance < 300
-               then 30 
-               else 70
-in distance / speed
-
+      speed = if dist < 300
+              then 30 
+              else 70
+  in dist / speed
 
 --LISTAS Y FUNCIONES
 --Ejercicio 1
