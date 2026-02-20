@@ -40,42 +40,33 @@ from0 :: Point -> Float
 from0 (x, y) = sqrt((x)^2+(y)^2)
 
 --Ejercicio 3
-data Haskellium = Haskellium String String String Point Shape
-                  deriving(Show, Eq)
-name :: Haskellium -> String
-name (Haskellium name lastName1 lastName2 location houseShape) = name 
-
-lastName1 :: Haskellium -> String
-lastName1 (Haskellium name lastName1 lastName2 location houseShape) = lastName1
-
-lastName2 :: Haskellium -> String
-lastName2 (Haskellium name lastName1 lastName2 location houseShape) = lastName2
-
-location :: Haskellium -> Point
-location (Haskellium name lastName1 lastName2 location houseShape) = location
-
-
-houseShape :: Haskellium -> Shape
-houseShape (Haskellium name lastName1 lastName2 location houseShape) = houseShape
+data Haskellium = Haskellium
+    { name :: String
+    , lastName1 :: String
+    , lastName2 :: String
+    , location :: (Float, Float)
+    , houseShape :: Shape
+    } deriving (Show, Eq)
                   
                  
 --Funcion para regresar el hijo de dos Haskelliums dado su nombre
 son :: Haskellium -> Haskellium -> String -> Haskellium
-son (Haskellium name1 lastName11 lastName21 location1 houseShape1)
-    (Haskellium name2 lastName12 lastName22 location2 houseShape2) nameSon = Haskellium nameSon lastName11 lastName12 location1 houseShape1
+son father mother childName =
+    Haskellium
+        { name = childName
+        , lastName1 = lastName1 father
+        , lastName2 = lastName1 mother
+        , location = location father
+        , houseShape = houseShape father
+        }
                                                                              
 --Funcion para calcular las unidades para construir la casa de un Haskellium
 houseCost :: Haskellium -> Float
-houseCost (Haskellium _ _ _ _ houseShape) = perimeter houseShape * 2.5 + area houseShape
+houseCost person = area (houseShape person) * 2
 
 --Funcion para calcular el tiempo que le toma a un Haskellium para llegar a su trabajo
 timeToWork :: Haskellium -> Float
-timeToWork (Haskellium _ _ _ location _ ) =
-  let dist = from0 location
-      speed = if dist < 300
-              then 30 
-              else 70
-  in dist / speed
+timeToWork person = from0 (location person) / 30
 
 --LISTAS Y FUNCIONES
 --Ejercicio 1
