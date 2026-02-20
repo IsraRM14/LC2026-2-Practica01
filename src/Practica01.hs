@@ -76,17 +76,20 @@ tiempo d
 
 --LISTAS Y FUNCIONES
 --Ejercicio 1
-palindromo :: Eq a => [a] -> Bool 
-palindromo lista = lista == reverse lista 
+palindromo :: Eq a => [a] -> Bool
+palindromo []  = True
+palindromo [_] = True
+palindromo xs  = head xs == last xs && palindromo (init (tail xs))
 
 --Ejercicio 2
 myFoldr :: (a -> b -> b) -> b -> [a] -> b
-myFoldr f v []     = v
-myFoldr f v (x:xs) = f x (foldr f v xs)
+myFoldr _ z []     = z
+myFoldr f z (x:xs) = f x (myFoldr f z xs)
+
 
 --Ejercicio 3
 conjuntoPotencia :: [a] -> [[a]]
-conjuntoPotencia = undefined
+conjuntoPotencia = myFoldr (\x acc -> myFoldr (\ys r -> (x:ys):r) [] acc ++ acc ) [[]]  -- Utilizamos el mismo foldr para que sea mas facil
 
 --ARBOLES
 
