@@ -43,7 +43,7 @@ data Haskellium = Haskellium
     { name :: String
     , lastName1 :: String
     , lastName2 :: String
-    , location :: (Float, Float)
+    , location :: Point
     , houseShape :: Shape
     } deriving (Show, Eq)
                   
@@ -61,11 +61,18 @@ son father mother childName =
                                                                              
 --Funcion para calcular las unidades para construir la casa de un Haskellium
 houseCost :: Haskellium -> Float
-houseCost person = area (houseShape person) * 2
+houseCost person = area (houseShape person) + perimeter (houseShape person) * 2.5 -- en vez de multiplicar por dos si le sumo el perimetro por la altura de 2.5 del pdf en teoria sumo las paredes dee la casa
 
 --Funcion para calcular el tiempo que le toma a un Haskellium para llegar a su trabajo
 timeToWork :: Haskellium -> Float
-timeToWork person = from0 (location person) / 30
+timeToWork person =
+    tiempo (distance (location person) (0, 0))
+
+tiempo :: Float -> Float -- Creamos la función auxiliar tiempo, para ayudar con los dos casos que hay, la funcion recibe la distancia y si es menor a 300 divide entre 30 de la bici y si no la vlocidad de la moto 70
+tiempo d
+    | d < 300 = d / 30
+    | otherwise = d / 70
+
 
 --LISTAS Y FUNCIONES
 --Ejercicio 1
