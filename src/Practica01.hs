@@ -15,8 +15,8 @@ area :: Shape -> Float
 area (Circle r) = pi *(r^2)
 area (Square l) = (l^2)
 area (Rectangle b h) = b * h
-area (Triangle x) = (x^2)/2 
-area (Trapeze v b h) = ((v + b) * h)/2 
+area (Triangle x) = (sqrt 3 / 4) * x^2
+area (Trapeze b1 b2 h) = ((b1 + b2) / 2) * h
 
 --Funcion que calcula el perimetro de las figuras
 perimeter :: Shape -> Float
@@ -24,11 +24,10 @@ perimeter (Circle r) = 2 * pi * r
 perimeter (Square l) = l * 4 
 perimeter (Rectangle b h) = (b*2) + (h*2)  
 perimeter (Triangle x) = x * 3 
-perimeter (Trapeze v b h) = v + b + (h*2) 
+perimeter (Trapeze b1 b2 h) = b1 + b2 + 2 * side
 
 
 --Ejercicio 2 (Les toca arreglar el sinonimo)
-
 type Point = (Float, Float)
 
 -- Funcion para calcular la distancia entre dos puntos
@@ -37,7 +36,7 @@ distance (x, y) (n, m) = sqrt((n-x)^2+(m-y)^2)
 
 --Funcion para calcular la distancia de un punto al origen
 from0 :: Point -> Float
-from0 (x, y) = sqrt((x)^2+(y)^2)
+from0 = distance(0,0)
 
 --Ejercicio 3
 data Haskellium = Haskellium
