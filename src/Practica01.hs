@@ -24,7 +24,7 @@ perimeter (Circle r) = 2 * pi * r
 perimeter (Square l) = l * 4 
 perimeter (Rectangle b h) = (b*2) + (h*2)  
 perimeter (Triangle x) = x * 3 
-perimeter (Trapeze b1 b2 h) = b1 + b2 + 2 * side
+perimeter (Trapeze b1 b2 h) = perimeter (Trapeze b1 b2 h) =  b1 + b2 + 2*( sqrt  (((b1-b2)/2)^2 + h^2))
 
 
 --Ejercicio 2 (Les toca arreglar el sinonimo)
