@@ -95,8 +95,13 @@ conjuntoPotencia = myFoldr (\x acc -> myFoldr (\ys r -> (x:ys):r) [] acc ++ acc 
 
 --Implementacion
 
-data OneTwoTree a = Undefinedd
+data OneTwoTree a = Vacio   --Definimos nuestro nodo vacio
+                   | Nodo a (OneTwoTree a)   --definimos nuestro nodo que tendra un hijo
+                   | Rama a (OneTwoTree a) (OneTwoTree a)    --Definimos la rama que puede tener 2 hijos
+                    deriving (Show, Eq)
 
 --Ejercicio 2
 suma :: OneTwoTree Int -> Int
-suma = undefined
+suma Vacio = 0
+suma (Nodo x n) = x + suma n
+suma (Rama x n m) = x + suma n + suma m
